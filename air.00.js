@@ -46,7 +46,7 @@ const displayCutString = () => {
 
     if (!string) {
         return
-    } else if (isValidString(string)) {
+    } else if (!isValidString(string)) {
         return
     }
 
