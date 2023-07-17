@@ -25,7 +25,7 @@ const isValidArguments = (arguments) => {
 }
 
 const isValidString = (string) => {
-    if (isNaN(string)) {
+    if (isNaN(parseInt(string, 10))) {
         return string.toString()
     } else {
         return console.log("Une erreur est survenue.")
@@ -41,6 +41,16 @@ const getArguments = () => {
 /*Résolution*/
 const displayFullString = () => {
     const strings = isValidArguments(getArguments())
+
+    if (!strings) {
+        return
+    }
+
+    for (i = 0; i < strings.length; i++) {
+        if (!isValidString(strings[i])) {
+            return
+        }
+    }
 
     return console.log(concatString(strings, strings[strings.length - 1]))
 }
