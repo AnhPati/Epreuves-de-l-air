@@ -1,5 +1,6 @@
 /*Fonctions*/
 const findIntruder = (arguments) => {
+    // return resultExpress = arguments.filter((word) => arguments.indexOf(word) === arguments.lastIndexOf(word)).join(", ")
     let result = arguments
 
     for (i = 0; i < result.length; i++) {
@@ -9,14 +10,13 @@ const findIntruder = (arguments) => {
                 result.splice(i, 1)
                 j = 0
                 i = 0
-                console.log("Result : " + result)
             }
         }
     }
 
     //Si jamais il y a plus d'un intrus
     if (result.length > 1) {
-        result = result.join(" ")
+        result = result.join(", ")
     } else {
         result = result[0]
     }
