@@ -1,21 +1,24 @@
 /*Fonctions*/
-const mathOperations = (numbers, operation) => {
-    let result = []
-    let calcul = [operation.slice(0, 1), Number(operation.slice(1))]
+const calculator = (numbers) => {
+    let resultExpress = []
+    const operator = numbers[numbers.length - 1][0]
+    const operatorNumber = numbers[numbers.length - 1][1]
 
-    for (i = 0; i < numbers.length - 1; i++) {
-        if (calcul[0] === "+") {
-            result.push((numbers[i]) + calcul[1])
-        } else if (calcul[0] === "-") {
-            result.push((numbers[i]) - calcul[1])
-        } else if (calcul[0] === "*") {
-            result.push((numbers[i]) * calcul[1])
-        } else if (calcul[0] === "/") {
-            result.push((numbers[i]) / calcul[1])
+    numbers.forEach((number, index, numbers) => {
+        if (operator === "+") {
+            resultExpress.push((number) + operatorNumber)
+        } else if (operator === "-") {
+            resultExpress.push((number) - operatorNumber)
+        } else if (operator === "*") {
+            resultExpress.push((number) * operatorNumber)
+        } else if (operator === "/") {
+            resultExpress.push((number) / operatorNumber)
         }
-    }
+    })
 
-    return result.join(' ')
+    resultExpress.splice(resultExpress[resultExpress.length - 1], 1)
+
+    return resultExpress.join(' ')
 }
 
 /*Gestion des erreurs*/
@@ -36,7 +39,7 @@ const isValidNumber = (number) => {
 }
 
 const isValidOperator = (operator) => {
-    if (operator === "+" || operator === "-" || operator === "*" || operator === "/") {
+    if ((operator === "+" || operator === "-" || operator === "*" || operator === "/") && operator.length > 1) {
         return operator
     } else {
         return console.log("L'opérateur n'est pas valide.")
@@ -50,7 +53,7 @@ const getArguments = () => {
 }
 
 /*Résolution*/
-const getMathOperations = () => {
+const getCalculator = () => {
     let numbers = isValidArguments(getArguments())
 
     if (!numbers) {
@@ -67,8 +70,8 @@ const getMathOperations = () => {
         }
     }
 
-    return console.log(mathOperations(numbers, numbers[numbers.length - 1]))
+    return console.log(calculator(numbers))
 }
 
 /*Affichage du résultat*/
-getMathOperations()
+getCalculator()
