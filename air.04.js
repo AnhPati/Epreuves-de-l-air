@@ -1,5 +1,6 @@
 /*Fonctions*/
 const singleConsecutiveLetter = (string) => {
+    // return resultExpress = string.split('').filter((letter, index, string) => letter !== string[index - 1]).join('')
     let result = []
 
     for (i = 0; i < string.length; i++) {
