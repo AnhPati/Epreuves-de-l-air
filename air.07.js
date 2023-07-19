@@ -3,7 +3,7 @@ const insertSort = (numbers, number) => {
     let result = numbers
     result.splice(result.length - 1, 1)
 
-    for (i = 0; i < numbers.length - 1; i++) {
+    for (let i = 0; i < numbers.length - 1; i++) {
 
         if (numbers[i] > number) {
             result.splice(i, 0, number)
@@ -46,7 +46,7 @@ const displayInsertSort = () => {
         return
     }
 
-    for (i = 0; i < numbers.length; i++) {
+    for (let i = 0; i < numbers.length; i++) {
         if (!isValidNumber(numbers[i])) {
             return
         } else {
