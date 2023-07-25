@@ -475,7 +475,7 @@ const testFile = [
                     ["'42 43'"]
                 ],
                 "result": [
-                    ["Hola el pueblito"]
+                    ["Hola\nel\npueblito"],
                     ["42 43"]
                 ]
             },
@@ -487,8 +487,8 @@ const testFile = [
                     ["'10 14 11 23 10'"]
                 ],
                 "result": [
-                    ["'Le chemin se termine ' ' avoir pris la route la plus longue'"],
-                    ["'10 14 ' ' 23 10'"]
+                    ["Le chemin se termine\navoir pris la route la plus longue"],
+                    ["'10 14\n23 10'"]
                 ]
             },
             {
@@ -498,7 +498,7 @@ const testFile = [
                     ["Tout collé tout mouillé ' '"]
                 ],
                 "result": [
-                    ["'Tout collé tout mouillé'"]
+                    ["Tout collé tout mouillé"]
                 ]
             },
             {
