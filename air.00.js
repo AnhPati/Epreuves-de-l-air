@@ -8,6 +8,7 @@ const cutString = (string) => {
     for (i = 0; i < string.length; i++) {
         if (string[i] === " " || string[i] === "\n" || string[i] === "\u0009") {
             stringArray.push(string.slice(index, i))
+            console.log(index)
             index = i + 1
         }
     }
@@ -50,7 +51,7 @@ const displayCutString = () => {
         return
     }
 
-    const stringArray = cutString(string)
+    const stringArray = cutString(string[0])
 
     for (i = 0; i < stringArray.length; i++) {
         console.log(stringArray[i])
