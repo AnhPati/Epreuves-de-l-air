@@ -26,9 +26,9 @@ const resultComparison = (result, test, display) => {
     resultArray.push("\n")
 
     if (JSON.stringify(testArray) === JSON.stringify(resultArray)) {
-        console.log(`${display} Succes`)
+        console.log(`${display} \x1b[032mSucces\x1b[037m`)
     } else {
-        console.log(`${display} Failure`)
+        console.log(`${display} \x1b[031mFailure\x1b[037m - \x1b[033m${test.slice(0, test.indexOf(test[test.length - 1]))}\x1b[037m`)
     }
 }
 
@@ -223,7 +223,7 @@ const testFile = [
                 "id": "14",
                 "test": [
                     ["1 5 90 50"],
-                    ["2 5 15 23 17 40"]
+                    ["2 5 15 17 quarante"]
                 ],
                 "result": [
                     ["Va ranger ton tableau !"],
@@ -445,11 +445,11 @@ const testFile = [
                 "id": "0",
                 "test": [
                     [`"Hola el pueblito"`],
-                    ["'42 43'"]
+                    ["42 43"]
                 ],
                 "result": [
                     ["Hola\nel\npueblito"],
-                    ["42 43"]
+                    ["42\n43"]
                 ]
             },
             {
@@ -479,7 +479,7 @@ const testFile = [
                 "id": "3",
                 "test": [
                     ["1 4 1 5 6 5 6"],
-                    ["Que bueno que rico que bueno"]
+                    ["Que rico bueno que bueno"]
                 ],
                 "result": [
                     ["4"],
