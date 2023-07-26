@@ -8,7 +8,9 @@ const scriptTest = (dataTest) => {
         const files = folder.files
 
         for (const file of files) {
+
             const tests = file.test
+
             for (const test of tests) {
                 let displayTest = `${file.name} ${tests.indexOf(test) + 1}/${tests.length} :`
                 let result = child_process.execSync(`node ${file.name} ${test}`, { cwd: path.join(folders[folder.id], ""), encoding: 'utf-8' }, (error, stdout, stderr) => { error ? stderr : stdout })
@@ -49,8 +51,6 @@ const pathFolders = () => {
 
     return pathFolders
 }
-
-/*Gestion des erreurs*/
 
 /*Parsing*/
 const testFile = [
@@ -589,11 +589,12 @@ const testFile = [
         ]
     }
 ]
+
 /*Résolution*/
 const displayScriptTest = () => {
     const dataTest = testFile
 
-    return console.log(scriptTest(dataTest))
+    return scriptTest(dataTest)
 }
 
 /*Affichage du résultat*/
