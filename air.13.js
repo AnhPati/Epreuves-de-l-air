@@ -10,34 +10,31 @@ const scriptTest = (dataTest) => {
         for (const file of files) {
             const tests = file.test
             for (const test of tests) {
-                console.log(file.name)
-                console.log("Phrase test : " + test)
-                console.log("Phrase résultat : " + file.result[tests.indexOf(test)])
+                // console.log(file.name)
+                // console.log("Phrase test : " + test)
+                // console.log("Phrase résultat : " + file.result[tests.indexOf(test)])
                 let displayTest = `${file.name} ${tests.indexOf(test) + 1}/${tests.length}`
                 let result = child_process.execSync(`node ${file.name} ${test}`, { cwd: path.join(folders[folder.id], ""), encoding: 'utf-8' }, (error, stdout, stderr) => { error ? stderr : stdout })
-                console.log("résultat : " + result)
+                // console.log("résultat : " + typeof result + " et résultat attendu : " + typeof String.toString(file.result[tests.indexOf(test)]))
+
+                resultComparison(file.result[tests.indexOf(test)], result, displayTest)
+
             }
         }
     }
-    // for (i = 0; i < folders.length; i++) {
-    //     let folder = dataTest[i]
-    //     for (j = 0; j < folder.files.length; j++) {
-    //         let file = folder.files[j]
-    //         for (k = 0; k < file.test.length; k++) {
-    //             let test = file.test[k]
-    //             let displayTest = `${file.name} ${k + 1}/${test.length}`
-    //             console.log("test : " + test)
-    //             console.log("display test : " + displayTest)
-    //             // .events
+}
 
-    //             // if (result === dataTest[i].files[j].result[k]) {
-    //             //     console.log(`${displayTest} : Succes`)
-    //             // } else {
-    //             //     console.log(`${displayTest} : Failure`)
-    //             // }
-    //         }
-    //     }
-    // }
+const resultComparison = (result, test, display) => {
+    let testArray = test.split("")
+    let resultArray = result[0].split("")
+    resultArray.push("\n")
+    console.log("tableau test : " + JSON.stringify(testArray))
+    console.log("tableau result : " + JSON.stringify(resultArray))
+    if (JSON.stringify(testArray) === JSON.stringify(resultArray)) {
+        console.log(display + " Succes")
+    } else {
+        console.log(display + " Failure")
+    }
 }
 
 const pathFolders = () => {
@@ -57,25 +54,6 @@ const pathFolders = () => {
 
     return pathFolders
 }
-
-// const pathFiles = () => {
-//     const fs = require('fs')
-//     const folders = pathFolders()
-
-//     let foldersContent = []
-
-//     for (let i = 0; i < folders.length; i++) {
-//         let tempFile = fs.readdirSync(folders[i], { withFileTypes: true })
-//         for (let j = 0; j < tempFile.length; j++) {
-//             if (tempFile[j].name.slice(0, 4) !== ".git") {
-//                 foldersContent.push(tempFile[j].name)
-//             }
-//         }
-//     }
-
-
-//     return foldersContent
-// }
 
 /*Gestion des erreurs*/
 
