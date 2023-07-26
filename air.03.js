@@ -4,7 +4,15 @@ const findIntruder = (arguments) => {
     let result = arguments
 
     for (i = 0; i < result.length; i++) {
+        if (isNaN(result[i])) {
+            result[i] = result[i].toLowerCase()
+        }
+
         for (j = 0; j < result.length; j++) {
+            if (isNaN(result[i])) {
+                result[j] = result[j].toLowerCase()
+            }
+
             if (result[j] === result[i] && i !== j) {
                 result.splice(j, 1)
                 result.splice(i, 1)
