@@ -24,7 +24,7 @@ const fusionSort = (firstArray, secondArray) => {
 
     if (firstArray.length > secondArray.length) {
         result = endFusion(result, firstArray.slice(count))
-    } else if (firstArray.length < secondArray.length) {
+    } else if (firstArray.length <= secondArray.length) {
         result = endFusion(result, secondArray.slice(count))
     }
 
@@ -94,7 +94,7 @@ const displayFusionSort = () => {
         }
     }
 
-    return fusionSort(arguments[0], arguments[1])
+    return console.log(fusionSort(arguments[0], arguments[1]))
 }
 
 /*Affichage du résultat*/
