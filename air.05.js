@@ -1,10 +1,11 @@
 /*Fonctions*/
 const calculator = (numbers) => {
+    const numbersArray = numbers.slice(0, numbers.indexOf(numbers[numbers.length - 1]))
     let resultExpress = []
     const operator = numbers[numbers.length - 1][0]
-    const operatorNumber = numbers[numbers.length - 1][1]
+    const operatorNumber = Number(numbers[numbers.length - 1][1])
 
-    numbers.forEach((number, index, numbers) => {
+    numbersArray.forEach((number) => {
         if (operator === "+") {
             resultExpress.push((number) + operatorNumber)
         } else if (operator === "-") {
@@ -39,7 +40,7 @@ const isValidNumber = (number) => {
 }
 
 const isValidOperator = (operator) => {
-    if ((operator === "+" || operator === "-" || operator === "*" || operator === "/") && operator.length > 1) {
+    if ((operator === "+" || operator === "-" || operator === "*" || operator === "/") && operator.length === 1) {
         return operator
     } else {
         return console.log("L'opérateur n'est pas valide.")
