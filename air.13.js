@@ -10,12 +10,8 @@ const scriptTest = (dataTest) => {
         for (const file of files) {
             const tests = file.test
             for (const test of tests) {
-                // console.log(file.name)
-                // console.log("Phrase test : " + test)
-                // console.log("Phrase résultat : " + file.result[tests.indexOf(test)])
-                let displayTest = `${file.name} ${tests.indexOf(test) + 1}/${tests.length}`
+                let displayTest = `${file.name} ${tests.indexOf(test) + 1}/${tests.length} :`
                 let result = child_process.execSync(`node ${file.name} ${test}`, { cwd: path.join(folders[folder.id], ""), encoding: 'utf-8' }, (error, stdout, stderr) => { error ? stderr : stdout })
-                // console.log("résultat : " + typeof result + " et résultat attendu : " + typeof String.toString(file.result[tests.indexOf(test)]))
 
                 resultComparison(file.result[tests.indexOf(test)], result, displayTest)
 
@@ -28,12 +24,11 @@ const resultComparison = (result, test, display) => {
     let testArray = test.split("")
     let resultArray = result[0].split("")
     resultArray.push("\n")
-    console.log("tableau test : " + JSON.stringify(testArray))
-    console.log("tableau result : " + JSON.stringify(resultArray))
+
     if (JSON.stringify(testArray) === JSON.stringify(resultArray)) {
-        console.log(display + " Succes")
+        console.log(`${display} Succes`)
     } else {
-        console.log(display + " Failure")
+        console.log(`${display} Failure`)
     }
 }
 
@@ -171,7 +166,7 @@ const testFile = [
                     ["-9"]
                 ],
                 "result": [
-                    ["La racine carrée est : 9."],
+                    ["La racine carrée est : 9"],
                     ["3"]
                 ]
             },
@@ -413,7 +408,7 @@ const testFile = [
                     ["Un 5 99 34 Quatre"]
                 ],
                 "result": [
-                    ["12 26 34 54 58 78 90"],
+                    ["final : 12 26 34 54 58 78 90"],
                     ["1 4 5 34 99"]
                 ]
             },
@@ -499,7 +494,7 @@ const testFile = [
                     ["'44 55 66'"]
                 ],
                 "result": [
-                    ["'Merveileuse médaile que je dépose par tere.'"],
+                    ["Merveileuse médaile que je dépose par tere."],
                     ["'4 5 6'"]
                 ]
             },
@@ -507,8 +502,8 @@ const testFile = [
                 "name": "air.05.js",
                 "id": "5",
                 "test": [
-                    ["4 6 8 10 '*2'"],
-                    ["1 3 5 7 '+2'"]
+                    ["4 6 8 10 *2"],
+                    ["1 3 5 7 +2"]
                 ],
                 "result": [
                     ["8 12 16 20"],
@@ -523,7 +518,7 @@ const testFile = [
                     ["systeme y"]
                 ],
                 "result": [
-                    ["sapes sapeur saturer"],
+                    ["sapes, sapeur, saturer"],
                     [" "]
                 ]
             },
@@ -555,78 +550,18 @@ const testFile = [
                     ["34 21 45 67"]
                 ],
                 "result": [
-                    ["Garry", "Luz", "Juan", "Sophie"],
-                    ["21", "45", "67", "34"]
+                    ["[ 'Garry', 'Luz', 'Juan', 'Sophie' ]"],
+                    ["[ '21', '45', '67', '34' ]"]
                 ]
             },
             {
                 "name": "air.10.js",
                 "id": "10",
                 "test": [
-                    ["air.00.js"]
+                    ["air.10.txt"]
                 ],
                 "result": [
-                    [`/*Fonctions*/
-                    const cutString = (string) => {
-                        // const whitespacesRegExp = /\s/g
-                        // return string.split(whitespacesRegExp)
-                        let stringArray = []
-                        let index = 0
-                    
-                        for (i = 0; i < string.length; i++) {
-                            if (string[i] === " " || string[i] === "\n" || string[i] === "\u0009") {
-                                stringArray.push(string.slice(index, i))
-                                index = i + 1
-                            }
-                        }
-                    
-                        stringArray.push(string.slice(index))
-                    
-                        return stringArray
-                    }
-                    
-                    /*Gestion des erreurs*/
-                    const isValidArguments = (arguments) => {
-                        if (arguments.length === 1) {
-                            return arguments
-                        } else {
-                            return console.log("Une erreur est survenue. Veuillez renseigner un seul argument.")
-                        }
-                    }
-                    
-                    const isValidString = (string) => {
-                        if (isNaN(string)) {
-                            return string.toString()
-                        } else {
-                            return console.log("Une erreur est survenue.")
-                        }
-                    }
-                    
-                    /*Parsing*/
-                    const getArguments = () => {
-                        const arguments = process.argv.slice(2)
-                        return arguments
-                    }
-                    
-                    /*Résolution*/
-                    const displayCutString = () => {
-                        const string = isValidArguments(getArguments())
-                    
-                        if (!string) {
-                            return
-                        } else if (!isValidString(string)) {
-                            return
-                        }
-                    
-                        const stringArray = cutString(string)
-                    
-                        for (i = 0; i < stringArray.length; i++) {
-                            console.log(stringArray[i])
-                        }
-                    }
-                    
-                    /*Affichage du résultat*/
-                    displayCutString()`]
+                    [`Nègres qu’on dénigre, qu’on laisse dans le vague\r\nQue la France catalogue entre délits et drogue\r\nLa race qui intrigue, celle à qui on délègue\r\nL’assiette la plus sale pour la part la plus maigre\r\nNègres qui fatiguent entre insultes et blagues\r\nEt chaque jour naviguent entre barrières et digues\r\nVoguent entre misère et morgue, prison glauque\r\nEt policiers déguisés en bulldogs\r\nNègres rendus ogres, durs rendus aigres\r\nRendus ordures comme Patrice Allègre\r\nRendus fous et rendus dingues\r\nRendus aptes à faire sauter une soute et une carlingue\r\nNègres qui appellent une cité un goulag\r\nEt préfèrent encore le crachat au dialogue\r\nEt larguent contre ceux qui désormais se liguent\r\nDes balles estampillées "bouffeurs de figues"`]
                 ]
             },
             {
@@ -636,7 +571,7 @@ const testFile = [
                     ["8 4"]
                 ],
                 "result": [
-                    ["   8   \n  888  \n 88888 \n8888888"]
+                    ["   8\n  888\n 88888\n8888888"]
                 ]
             },
             {
@@ -647,8 +582,8 @@ const testFile = [
                     ["Un 5 99 34 Quatre"]
                 ],
                 "result": [
-                    ["12 26 34 54 58 78 90"],
-                    ["1 4 5 34 99"]
+                    ["[\n  12, 26, 34, 54,\n  58, 78, 90\n]"],
+                    ["[\n  1, 4, 5,\n  34 99\n"]
                 ]
             }
         ]
