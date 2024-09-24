@@ -1,9 +1,8 @@
 /*Fonctions*/
 const scriptTest = (dataTest) => {
     const child_process = require('child_process')
-    const folders = pathFolders().reverse()
+    const folders = pathFolders()
     const path = require("path")
-
     for (const folder of dataTest) {
         const files = folder.files
 
@@ -43,7 +42,7 @@ const pathFolders = () => {
     let pathFolders = []
 
     for (let i = 0; i < parentFolderContent.length; i++) {
-        if (parentFolderContent[i].name[0] === 'E') {
+        if (parentFolderContent[i].name[2] === 'E') {
             let tempPath = Object.values(parentFolderContent[i])
             pathFolders.push(path.join(parentFolder, tempPath[0]))
         }
